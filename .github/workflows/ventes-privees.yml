@@ -1,1 +1,38 @@
+name: Ventes Privées Bot
 
+on:
+  schedule:
+    - cron: '15 6 * * *'
+    - cron: '15 18 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le repo
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Installer les dépendances
+        run: pip install -r requirements.txt
+
+      - name: Lancer le bot
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: python ventes_privees_bot.py
+
+      - name: Sauvegarder les résultats dans le repo
+        run: |
+          git config user.name "ventes-privees-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add seen_deals.json ventes_privees.ics
+          git diff --quiet --cached || git commit -m "Mise à jour automatique des ventes"
+          git push
