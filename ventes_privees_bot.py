@@ -187,8 +187,8 @@ def main():
     deals_jour = parse_deals(soup_jour)
     print(f"{len(deals_jour)} ventes trouvées aujourd'hui.")
 
-    new_ids = set()
-    for deal in deals_jour:
+new_ids.add(deal["id"])
+for deal in deals_jour:
         if deal["id"] in seen:
             continue
         if deal["discount"] is not None and deal["discount"] >= MIN_DISCOUNT and matches_watchlist(deal["brand"]):
