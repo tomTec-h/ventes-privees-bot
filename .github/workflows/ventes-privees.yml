@@ -29,7 +29,7 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
         run: python ventes_privees_bot.py
 
-     - name: Sauvegarder les résultats dans le repo
+      - name: Sauvegarder les résultats dans le repo
         run: |
           git config user.name "ventes-privees-bot"
           git config user.email "bot@users.noreply.github.com"
