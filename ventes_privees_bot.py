@@ -33,7 +33,7 @@ from ics import Calendar, Event
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL", "")
 
 # Seuil minimum de réduction pour déclencher une alerte (en %)
-MIN_DISCOUNT = 60
+MIN_DISCOUNT = 30
 
 # Liste blanche de marques à surveiller en priorité (laisser vide [] pour tout suivre)
 # Exemple : ["SANDRO", "MAJE", "THE KOOPLES", "BA&SH", "VANESSA BRUNO"]
